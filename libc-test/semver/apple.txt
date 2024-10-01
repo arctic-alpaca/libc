@@ -849,6 +849,7 @@ LOCAL_PEEREPID
 LOCAL_PEEREUUID
 LOCAL_PEERPID
 LOCAL_PEERUUID
+LOCAL_PEERTOKEN
 LOGIN_PROCESS
 LOG_AUTHPRIV
 LOG_CRON
@@ -1912,6 +1913,8 @@ lockf
 log2phys
 login_tty
 lutimes
+mach_error_string
+mach_error_t
 madvise
 malloc_default_zone
 malloc_good_size

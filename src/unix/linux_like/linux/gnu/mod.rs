@@ -399,6 +399,7 @@ s! {
         pub chunk_size: ::__u32,
         pub headroom: ::__u32,
         pub flags: ::__u32,
+        pub tx_metadata_len: ::__u32,
     }
 
     pub struct xdp_umem_reg_v1 {
@@ -431,6 +432,15 @@ s! {
         pub addr: ::__u64,
         pub len: ::__u32,
         pub options: ::__u32,
+    }
+
+    pub struct xsk_tx_metadata_completion {
+        pub tx_timestamp: ::__u64,
+    }
+
+    pub struct xsk_tx_metadata_request {
+        pub csum_start: ::__u16,
+        pub csum_offset: ::__u16,
     }
 
     pub struct iocb {
@@ -639,6 +649,18 @@ s_no_extra_traits! {
 
         pub ut_addr_v6: [i32; 4],
         __glibc_reserved: [::c_char; 20],
+    }
+
+    #[allow(missing_debug_implementations)]
+    pub struct xsk_tx_metadata {
+        pub flags: ::__u64,
+        pub xsk_tx_metadata_union: __c_anonymous_xsk_tx_metadata_union,
+    }
+
+    #[allow(missing_debug_implementations)]
+    pub union __c_anonymous_xsk_tx_metadata_union {
+        pub request: xsk_tx_metadata_request,
+        pub completion: xsk_tx_metadata_completion,
     }
 }
 
@@ -1070,6 +1092,8 @@ pub const XDP_USE_NEED_WAKEUP: ::__u16 = 1 << 3;
 pub const XDP_USE_SG: ::__u16 = 1 << 4;
 
 pub const XDP_UMEM_UNALIGNED_CHUNK_FLAG: ::__u32 = 1 << 0;
+pub const XDP_UMEM_TX_SW_CSUM: ::__u32 = 1 << 1;
+pub const XDP_UMEM_TX_METADATA_LEN: ::__u32 = 1 << 2;
 
 pub const XDP_RING_NEED_WAKEUP: ::__u32 = 1 << 0;
 
@@ -1092,26 +1116,11 @@ pub const XDP_UMEM_PGOFF_COMPLETION_RING: ::c_ulonglong = 0x180000000;
 pub const XSK_UNALIGNED_BUF_OFFSET_SHIFT: ::c_int = 48;
 pub const XSK_UNALIGNED_BUF_ADDR_MASK: ::c_ulonglong = (1 << XSK_UNALIGNED_BUF_OFFSET_SHIFT) - 1;
 
-pub const XDP_PKT_CONTD: ::__u32 = 1 << 0;
+pub const XDP_TXMD_FLAGS_TIMESTAMP: ::__u32 = 1 << 0;
+pub const XDP_TXMD_FLAGS_CHECKSUM: ::__u32 = 1 << 1;
 
-// elf.h
-pub const NT_PRSTATUS: ::c_int = 1;
-pub const NT_PRFPREG: ::c_int = 2;
-pub const NT_FPREGSET: ::c_int = 2;
-pub const NT_PRPSINFO: ::c_int = 3;
-pub const NT_PRXREG: ::c_int = 4;
-pub const NT_TASKSTRUCT: ::c_int = 4;
-pub const NT_PLATFORM: ::c_int = 5;
-pub const NT_AUXV: ::c_int = 6;
-pub const NT_GWINDOWS: ::c_int = 7;
-pub const NT_ASRS: ::c_int = 8;
-pub const NT_PSTATUS: ::c_int = 10;
-pub const NT_PSINFO: ::c_int = 13;
-pub const NT_PRCRED: ::c_int = 14;
-pub const NT_UTSNAME: ::c_int = 15;
-pub const NT_LWPSTATUS: ::c_int = 16;
-pub const NT_LWPSINFO: ::c_int = 17;
-pub const NT_PRFPXREG: ::c_int = 20;
+pub const XDP_PKT_CONTD: ::__u32 = 1 << 0;
+pub const XDP_TX_METADATA: ::__u32 = 1 << 1;
 
 pub const ELFOSABI_ARM_AEABI: u8 = 64;
 
