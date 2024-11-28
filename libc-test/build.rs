@@ -3822,24 +3822,12 @@ fn test_linux(target: &str) {
                 true
             }
 
-            // FIXME: Requires >= 5.3 kernel headers.
-            // Everything that uses install-musl.sh has 4.19 kernel headers.
-            "xdp_options" if musl => true,
-
-            // FIXME: Requires >= 5.4 kernel headers.
-            // Everything that uses install-musl.sh has 4.19 kernel headers.
-            "xdp_ring_offset" | "xdp_mmap_offsets" if musl => true,
-
             // FIXME: Requires >= 6.8 kernel headers.
             // A field was added in 6.8.
             // https://github.com/torvalds/linux/commit/341ac980eab90ac1f6c22ee9f9da83ed9604d899
             // The previous version of the struct was removed in 6.11 due to a bug.
             // https://github.com/torvalds/linux/commit/32654bbd6313b4cfc82297e6634fa9725c3c900f
             "xdp_umem_reg" => true,
-
-            // FIXME: Requires >= 5.9 kernel headers.
-            // Everything that uses install-musl.sh has 4.19 kernel headers.
-            "xdp_statistics" if musl => true,
 
             // FIXME: Requires >= 6.8 kernel headers.
             "xsk_tx_metadata"
