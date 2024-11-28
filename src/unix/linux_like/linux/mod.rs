@@ -1236,28 +1236,6 @@ s! {
         pub cr: xdp_ring_offset,
     }
 
-    #[deprecated(
-        since = "0.2.167",
-        note = "We consider removing this as the newer version of this struct will work with older kernel versions. If you're using it, please comment on https://github.com/rust-lang/libc/issues/4168"
-    )]
-    pub struct xdp_ring_offset_v1 {
-        pub producer: crate::__u64,
-        pub consumer: crate::__u64,
-        pub desc: crate::__u64,
-    }
-
-    #[allow(deprecated)]
-    #[deprecated(
-        since = "0.2.167",
-        note = "We consider removing this as the newer version of this struct will work with older kernel versions. If you're using it, please comment on https://github.com/rust-lang/libc/issues/4168"
-    )]
-    pub struct xdp_mmap_offsets_v1 {
-        pub rx: xdp_ring_offset_v1,
-        pub tx: xdp_ring_offset_v1,
-        pub fr: xdp_ring_offset_v1,
-        pub cr: xdp_ring_offset_v1,
-    }
-
     pub struct xdp_umem_reg {
         pub addr: crate::__u64,
         pub len: crate::__u64,
@@ -1267,17 +1245,6 @@ s! {
         pub tx_metadata_len: crate::__u32,
     }
 
-    #[deprecated(
-        since = "0.2.167",
-        note = "We consider removing this as the newer version of this struct will work with older kernel versions. If you're using it, please comment on https://github.com/rust-lang/libc/issues/4168"
-    )]
-    pub struct xdp_umem_reg_v1 {
-        pub addr: crate::__u64,
-        pub len: crate::__u64,
-        pub chunk_size: crate::__u32,
-        pub headroom: crate::__u32,
-    }
-
     pub struct xdp_statistics {
         pub rx_dropped: crate::__u64,
         pub rx_invalid_descs: crate::__u64,
@@ -1285,16 +1252,6 @@ s! {
         pub rx_ring_full: crate::__u64,
         pub rx_fill_ring_empty_descs: crate::__u64,
         pub tx_ring_empty_descs: crate::__u64,
-    }
-
-    #[deprecated(
-        since = "0.2.167",
-        note = "We consider removing this as the newer version of this struct will work with older kernel versions. If you're using it, please comment on https://github.com/rust-lang/libc/issues/4168"
-    )]
-    pub struct xdp_statistics_v1 {
-        pub rx_dropped: crate::__u64,
-        pub rx_invalid_descs: crate::__u64,
-        pub tx_invalid_descs: crate::__u64,
     }
 
     pub struct xdp_options {

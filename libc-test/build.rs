@@ -3847,18 +3847,6 @@ fn test_linux(target: &str) {
             | "xsk_tx_metadata_request"
             | "xsk_tx_metadata_completion" => true,
 
-            // A new field was added in kernel 5.4, this is the old version for backwards compatibility.
-            // https://github.com/torvalds/linux/commit/77cd0d7b3f257fd0e3096b4fdcff1a7d38e99e10
-            "xdp_ring_offset_v1" | "xdp_mmap_offsets_v1" => true,
-
-            // Multiple new fields were added in kernel 5.9, this is the old version for backwards compatibility.
-            // https://github.com/torvalds/linux/commit/77cd0d7b3f257fd0e3096b4fdcff1a7d38e99e10
-            "xdp_statistics_v1" => true,
-
-            // A new field was added in kernel 5.4, this is the old version for backwards compatibility.
-            // https://github.com/torvalds/linux/commit/c05cd3645814724bdeb32a2b4d953b12bdea5f8c
-            "xdp_umem_reg_v1" => true,
-
             // Is defined in `<linux/sched/types.h>` but if this file is included at the same time
             // as `<sched.h>`, the `struct sched_param` is defined twice, causing the compilation to
             // fail. The problem doesn't seem to be present in more recent versions of the linux
