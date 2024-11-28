@@ -1236,12 +1236,21 @@ s! {
         pub cr: xdp_ring_offset,
     }
 
+    #[deprecated(
+        since = "0.2.167",
+        note = "We consider removing this as the newer version of this struct will work with older kernel versions. If you're using it, please comment on https://github.com/rust-lang/libc/issues/4168"
+    )]
     pub struct xdp_ring_offset_v1 {
         pub producer: crate::__u64,
         pub consumer: crate::__u64,
         pub desc: crate::__u64,
     }
 
+    #[allow(deprecated)]
+    #[deprecated(
+        since = "0.2.167",
+        note = "We consider removing this as the newer version of this struct will work with older kernel versions. If you're using it, please comment on https://github.com/rust-lang/libc/issues/4168"
+    )]
     pub struct xdp_mmap_offsets_v1 {
         pub rx: xdp_ring_offset_v1,
         pub tx: xdp_ring_offset_v1,
@@ -1258,6 +1267,10 @@ s! {
         pub tx_metadata_len: crate::__u32,
     }
 
+    #[deprecated(
+        since = "0.2.167",
+        note = "We consider removing this as the newer version of this struct will work with older kernel versions. If you're using it, please comment on https://github.com/rust-lang/libc/issues/4168"
+    )]
     pub struct xdp_umem_reg_v1 {
         pub addr: crate::__u64,
         pub len: crate::__u64,
@@ -1274,6 +1287,10 @@ s! {
         pub tx_ring_empty_descs: crate::__u64,
     }
 
+    #[deprecated(
+        since = "0.2.167",
+        note = "We consider removing this as the newer version of this struct will work with older kernel versions. If you're using it, please comment on https://github.com/rust-lang/libc/issues/4168"
+    )]
     pub struct xdp_statistics_v1 {
         pub rx_dropped: crate::__u64,
         pub rx_invalid_descs: crate::__u64,
@@ -5745,7 +5762,8 @@ pub const XDP_UMEM_PGOFF_FILL_RING: crate::c_ulonglong = 0x100000000;
 pub const XDP_UMEM_PGOFF_COMPLETION_RING: crate::c_ulonglong = 0x180000000;
 
 pub const XSK_UNALIGNED_BUF_OFFSET_SHIFT: crate::c_int = 48;
-pub const XSK_UNALIGNED_BUF_ADDR_MASK: crate::c_ulonglong = (1 << XSK_UNALIGNED_BUF_OFFSET_SHIFT) - 1;
+pub const XSK_UNALIGNED_BUF_ADDR_MASK: crate::c_ulonglong =
+    (1 << XSK_UNALIGNED_BUF_OFFSET_SHIFT) - 1;
 
 pub const XDP_PKT_CONTD: crate::__u32 = 1 << 0;
 
