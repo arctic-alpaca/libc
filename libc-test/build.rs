@@ -4224,6 +4224,9 @@ fn test_linux(target: &str) {
             // FIXME(linux): Requires >= 6.11 kernel headers.
             "XDP_UMEM_TX_METADATA_LEN" => true,
 
+            // FIXME(linux): Requires >= 6.17 kernel headers.
+            "XDP_MAX_TX_SKB_BUDGET" => true,
+
             // FIXME(linux): Requires >= 6.11 kernel headers.
             "NS_GET_MNTNS_ID"
             | "NS_GET_PID_FROM_PIDNS"

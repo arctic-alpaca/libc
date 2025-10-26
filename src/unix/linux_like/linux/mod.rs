@@ -5629,6 +5629,7 @@ pub const XDP_UMEM_FILL_RING: c_int = 5;
 pub const XDP_UMEM_COMPLETION_RING: c_int = 6;
 pub const XDP_STATISTICS: c_int = 7;
 pub const XDP_OPTIONS: c_int = 8;
+pub const XDP_MAX_TX_SKB_BUDGET: c_int = 9;
 
 pub const XDP_OPTIONS_ZEROCOPY: crate::__u32 = 1 << 0;
 
